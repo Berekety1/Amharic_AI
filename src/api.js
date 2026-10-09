@@ -1,5 +1,6 @@
 import { b64toBlob } from './utils/b64toBlob.js';
 
+// Set VITE_N8N_WEBHOOK_URL in .env (see .env.example)
 const WEBHOOK = import.meta.env.VITE_N8N_WEBHOOK_URL;
 
 /**
@@ -9,7 +10,9 @@ const WEBHOOK = import.meta.env.VITE_N8N_WEBHOOK_URL;
  * 2) Raw binary/mp3 with proper content-type
  */
 export async function sendTextToTTS(payload) {
-  const res = await fetch('http://localhost:5678/webhook/8c447714-b951-4963-af78-061807739431', {
+  if (!WEBHOOK) throw new Error('VITE_N8N_WEBHOOK_URL is not set');
+
+  const res = await fetch(WEBHOOK, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),

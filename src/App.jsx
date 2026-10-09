@@ -30,7 +30,7 @@ export default function App() {
       )}
 
       <footer>
-        <small>Built fast & dirty. Clean it as you wish. © {new Date().getFullYear()}</small>
+        <small>Made by <a href="https://github.com/Berekety1">Bereket</a></small>
       </footer>
     </div>
   );
